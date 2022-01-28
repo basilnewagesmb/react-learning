@@ -1,4 +1,6 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "./features/users/usersSlice";
 import {
   BrowserRouter,
   Routes,
@@ -26,9 +28,6 @@ function Layout() {
           </li>
         </ul>
       </nav>
-      <p>outlet below
-        
-      </p>
       <Outlet />
     </div>
   );
@@ -73,6 +72,12 @@ const Apple = () => {
 };
 
 function App() {
+  const dispatch = useDispatch();
+  const {entities,loading} = useSelector((state) =>state.users);
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+  console.log(entities);
   return (
     <div className="App">
       <BrowserRouter>
