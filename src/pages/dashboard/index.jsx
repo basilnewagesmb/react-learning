@@ -1,31 +1,18 @@
+import { Row } from "antd";
+import { Content } from "antd/lib/layout/layout";
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
 function DashBoardMain() {
   return (
-    <section>
-      <h1>dashboard main</h1>
-      <aside>
-        <ul>
-          <li>
-            <Link to={"/dashboard/inbox"}>inbox</Link>
-          </li>
-          <li>
-            <Link to={"/dashboard/settings-and-privacy"}>settings</Link>
-          </li>
-          <li>
-            <Link to="">settings</Link>
-          </li>
-          <li>
-            <Link to="">settings</Link>
-          </li>
-          <li>
-            <Link to="">settings</Link>
-          </li>
-        </ul>
-      </aside>
-      <Outlet />
-    </section>
+    <Content style={{ margin: "24px 16px 0" }}>
+      <Row>
+        <h1>Dashboard main</h1>
+      </Row>
+      <Row>
+        <Outlet />
+      </Row>
+    </Content>
   );
 }
 

@@ -2,36 +2,39 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "features/users/usersSlice";
 import { useNavigate, useParams } from "react-router";
+import { Button, Card, Col, Row } from "antd";
 function Detail() {
+  const [currentPost, setCurrentPost] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [currentPost, setCurrentPost] = useState();
   const dispatch = useDispatch();
-  const { entities } = useSelector((state) => state.users);
+  const { entities, loading } = useSelector((state) => state.users);
   useEffect(() => {
-    if (entities.length < 0) {
+    if (!loading && entities.length === 0) {
       dispatch(fetchUser());
     }
   });
+  let newEntry;
   useEffect(() => {
-    const newEntry = entities.filter((post, i) => post.id === id)[0];
-    setCurrentPost(newEntry);
+    newEntry = entities.filter((post, i) => post.id == id);
+    setCurrentPost(newEntry[0]);
   }, [entities]);
-
   return (
-    <article>
-      <aside>
-        <p>{currentPost?.id}</p>
-        <h1>{currentPost?.name}</h1>
-        <button
-          onClick={() => navigate(-1)}
-          variant={"outlined"}
-          color={"primary"}
-        >
-          Go back
-        </button>
-      </aside>
-    </article>
+    <Row style={{ margin: "24px 16px 0" }}>
+      <Col>
+        <Card>
+          <p>{currentPost?.id}</p>
+          <h1>{currentPost?.name}</h1>
+          <Button
+            onClick={() => navigate(-1)}
+            variant={"outlined"}
+            color={"primary"}
+          >
+            Go back
+          </Button>
+        </Card>
+      </Col>
+    </Row>
   );
 }
 

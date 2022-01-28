@@ -3,33 +3,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "features/users/usersSlice";
 import "style/posts.css";
 import { useNavigate } from "react-router-dom";
-
+import { Button, Card, Col, Row } from "antd";
+import { Content } from "antd/lib/layout/layout";
 function Index() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { entities, loading } = useSelector((state) => state.users);
   useEffect(() => {
-    if (entities.length === 0) {
+    if (!loading && entities.length === 0) {
       dispatch(fetchUser());
     }
   });
   return (
-    <div>
+    <Content style={{ margin: "24px 16px 0" }}>
       <h1>Posts</h1>
       {loading && <p>loading...</p>}
-      <article>
+      <Row>
         {entities?.map((post, i) => {
           return (
-            <aside key={i}>
-              <h3>{post.name}</h3>
-              <button onClick={() => navigate("/posts/" + post.id)}>
-                See Details
-              </button>
-            </aside>
+            <Col key={i} span={4}>
+              <Card
+                hoverable
+                style={{ margin: 20}}
+                title={post.name}
+              >
+                <Button onClick={() => navigate("/posts/" + post.id)} align="center">
+                  {" "}
+                  See Details
+                </Button>
+              </Card>
+            </Col>
           );
         })}
-      </article>
-    </div>
+      </Row>
+    </Content>
   );
 }
 

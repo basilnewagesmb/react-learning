@@ -1,26 +1,25 @@
-import { Menu } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Menu } from "antd";
 import {
   MailOutlined,
   AppstoreOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-
-function NavBar() {
+function SidBar() {
   return (
-    <Menu mode="horizontal" theme="dark">
+    <Menu theme="dark">
       <Menu.Item icon={<MailOutlined />}>
-        <Link to="/">home</Link>
+        <Link to={"/"}>Back to Home</Link>
       </Menu.Item>
       <Menu.Item icon={<AppstoreOutlined />}>
-        <Link to="/posts">posts</Link> 
+        <Link to={"/dashboard/inbox"}>inbox</Link>{" "}
       </Menu.Item>
-      <Menu.Item icon={<AppstoreOutlined />}>
-        <Link to="/dashboard">dashboard</Link>
+      <Menu.Item icon={<SettingOutlined />}>
+        <Link to={"/dashboard/settings-and-privacy"}>settings</Link>{" "}
       </Menu.Item>
     </Menu>
   );
 }
 
-export default NavBar;
+export default SidBar;
