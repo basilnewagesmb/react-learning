@@ -7,14 +7,14 @@ function Detail() {
   const navigate = useNavigate();
   const [currentPost, setCurrentPost] = useState();
   const dispatch = useDispatch();
-  const { entities, loading } = useSelector((state) => state.users);
+  const { entities } = useSelector((state) => state.users);
   useEffect(() => {
     if (entities.length < 0) {
       dispatch(fetchUser());
     }
-  }, []);
+  });
   useEffect(() => {
-    const newEntry = entities.filter((post, i) => post.id == id)[0];
+    const newEntry = entities.filter((post, i) => post.id === id)[0];
     setCurrentPost(newEntry);
   }, [entities]);
 

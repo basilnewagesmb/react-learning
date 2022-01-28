@@ -9,10 +9,10 @@ function Index() {
   const dispatch = useDispatch();
   const { entities, loading } = useSelector((state) => state.users);
   useEffect(() => {
-    if (entities.length == 0) {
+    if (entities.length === 0) {
       dispatch(fetchUser());
     }
-  }, []);
+  });
   return (
     <div>
       <h1>Posts</h1>
