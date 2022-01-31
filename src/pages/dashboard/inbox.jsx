@@ -1,20 +1,18 @@
-import { Row } from "antd";
 import React from "react";
 import { useGetPostByLimitQuery, useCreatePostMutation } from "services/post";
 
 function Inbox() {
   const { isLoading, data } = useGetPostByLimitQuery(10);
+  const [createPost, responseInfo,status] = useCreatePostMutation()
   const HandlePost = () => {
-   const create = useCreatePostMutation({ title: "b", body: "1" });
-   console.log(create);
+   createPost({ title: "b", body: "1" }).then((e)=> console.log(e.data))
+  
   };
 
-  if (isLoading) {
-    return <p>loading..</p>;
-  }
+
   return (
     <div>
-      {data.map((post, i) => (
+      {data?.map((post, i) => (
         <div key={i}>{post.title}</div>
       ))}
 
