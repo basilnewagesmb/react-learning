@@ -18,12 +18,12 @@ const Router = () => {
       <Route path="/posts" element={<Posts />} />
       <Route path="/posts/:id" element={<PostDetails />} />
       <Route path="/auth/login" element={user ? <Navigate to="/"/> : <Login />} />
-      <Route path="/dashboard" element={!user ? <Navigate to="/"/> :<DashBoardMain />} >
-        <Route path="/dashboard/" element={!user ? <Navigate to="/"/> :<Inbox />} />
-        <Route path="/dashboard/inbox" element={!user ? <Navigate to="/"/> :<Inbox />} />
+      <Route path="/dashboard" element={!user ? <Navigate to="/auth/login"/> :<DashBoardMain />} >
+        <Route path="/dashboard/" element={!user ? <Navigate to="/auth/login"/> :<Inbox />} />
+        <Route path="/dashboard/inbox" element={!user ? <Navigate to="/auth/login"/> :<Inbox />} />
         <Route
           path="/dashboard/settings-and-privacy"
-          element={!user ? <Navigate to="/"/> : <SettingsAndPrivacy />}
+          element={!user ? <Navigate to="/auth/login"/> : <SettingsAndPrivacy />}
         />
         <Route path="*" element={<NotFound />} />
       </Route>

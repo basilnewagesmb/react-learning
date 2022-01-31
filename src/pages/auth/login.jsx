@@ -17,9 +17,9 @@ function Login() {
     console.log("Failed:", errorInfo);
   };
   return (
-    <Content>
+    <Content className="login">
       <Row>
-        <Col span={6}>
+        <Col span={12}>
           <Form
             name="basic"
             labelCol={{
