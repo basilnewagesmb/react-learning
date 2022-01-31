@@ -6,13 +6,13 @@ import { useGetAllPostQuery } from "services/post";
 
 function Index() {
   const navigate = useNavigate();
-  const responseInfo = useGetAllPostQuery(10);
+  const responseInfo = useGetAllPostQuery();
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let [searchParams] = useSearchParams();
-  let urlPage = searchParams.get("page");
+  let urlPage = searchParams.get("page") || 1;
   useEffect(() => {
     setCurrentPage(urlPage);
   }, [urlPage]);
@@ -21,7 +21,7 @@ function Index() {
     setCurrentPage(page);
     setPostsPerPage(pageSize);
     navigate("?page=" + page);
-  };
+  }; 
   if (responseInfo.isLoading)
     return (
       <Content>
@@ -49,11 +49,14 @@ function Index() {
 
   return (
     <Content style={{ margin: "24px 16px 0" }}>
-      <Pagination
-        defaultCurrent={urlPage || 1}
-        onChange={handlePagination}
-        total={responseInfo?.data.length}
-      />
+      <Row>
+        <Pagination
+          defaultCurrent={urlPage || 1}
+          onChange={handlePagination}
+          total={responseInfo?.data.length}
+        />
+      </Row>
+
       <Row>
         {responseInfo?.data &&
           currentPosts.map((post, i) => (
