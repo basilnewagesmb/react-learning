@@ -9,8 +9,9 @@ import SettingsAndPrivacy from "pages/dashboard/settings";
 import Inbox from "pages/dashboard/inbox";
 import Login from "pages/auth/login";
 import { useSelector } from "react-redux";
+import { getToken } from "cookies/token";
+
 const Router = () => {
-  
   const { user, name } = useSelector((state) => state.auth);
   return (
     <Routes>

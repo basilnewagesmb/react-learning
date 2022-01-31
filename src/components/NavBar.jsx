@@ -1,5 +1,5 @@
-import { Menu } from "antd";
-import React from "react";
+import { Menu, Popover } from "antd";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   MailOutlined,
@@ -7,10 +7,14 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import Avatar from "antd/lib/avatar/avatar";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { logout } from "features/auth/authSlice";
 
 function NavBar() {
   const { user, name } = useSelector((state) => state.auth);
+  const [visibility, setVisibility] = useState(false);
+  const dispatch = useDispatch();
+  
 
   return (
     <Menu mode="horizontal" theme="dark">
@@ -31,14 +35,19 @@ function NavBar() {
       )}
       {user && (
         <Menu.Item key="avatar">
-          <Link to="/">
+          <Popover
+            content={<a onClick={()=>dispatch(logout())}>logout</a>}
+            trigger="click"
+            visible={visibility}
+            onVisibleChange={()=>setVisibility(true)}
+          >
             <Avatar
               style={{ backgroundColor: "green", verticalAlign: "middle" }}
               size="large"
             >
               {name.slice(0, 1)}
             </Avatar>
-          </Link>
+          </Popover>
         </Menu.Item>
       )}
     </Menu>

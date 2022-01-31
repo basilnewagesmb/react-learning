@@ -8,7 +8,7 @@ import {loginUser} from 'features/auth/authSlice';
 function Login() {
   const dispatch =useDispatch();
   const onFinish = (values) => {
-    console.log("Success:", values);
+    //console.log("Success:", values);
     const upendData={ user: true, token: "56ds4g6g4g4d6fgds", name: values.username, email: values.password }
     dispatch(loginUser(upendData));
   };
