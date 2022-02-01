@@ -5,10 +5,9 @@ export const getToken = () => {
 };
 
 export const setToken = (token) => {
-  return Cookies.set("token",token);
+  return Cookies.set("token", token);
 };
 
 export const removeToken = () => {
-    return Cookies.remove("token");
-  };
-  
+  return Cookies.remove("token");
+};

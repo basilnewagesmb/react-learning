@@ -6,7 +6,11 @@ import { useGetAllPostQuery } from "services/post";
 
 function Index() {
   const navigate = useNavigate();
-  const responseInfo = useGetAllPostQuery();
+  let id
+  const responseInfo = useGetAllPostQuery(id, {
+    pollingInterval: 3000,// will trigger after 3sc
+    refetchOnMountOrArgChange: true, //it call each mound
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   const indexOfLastPost = currentPage * postsPerPage;

@@ -15,25 +15,7 @@ function App() {
   const token = getToken();
 
   useEffect(() => {
-    if (token) {
-      dispatch(
-        loginUser({
-          user: "Basil",
-          token: token,
-          name: "basil",
-          email: "basil@b.gmail",
-        })
-      );
-    } else {
-      dispatch(
-        loginUser({
-          user: false,
-          token: null,
-          name: null,
-          email: null,
-        })
-      );
-    }
+
   }, []);
 
   return (

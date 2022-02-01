@@ -10,6 +10,7 @@ import Inbox from "pages/dashboard/inbox";
 import Login from "pages/auth/login";
 import { useSelector } from "react-redux";
 import { getToken } from "cookies/token";
+import SingUp from './../pages/auth/singup';
 
 const Router = () => {
   const { user, name } = useSelector((state) => state.auth);
@@ -18,6 +19,7 @@ const Router = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/posts" element={<Posts />} />
       <Route path="/posts/:id" element={<PostDetails />} />
+      <Route path="/auth/sign-up" element={<SingUp />} />
       <Route path="/auth/login" element={user ? <Navigate to="/"/> : <Login />} />
       <Route path="/dashboard" element={!user ? <Navigate to="/auth/login"/> :<DashBoardMain />} >
         <Route path="/dashboard/" element={!user ? <Navigate to="/auth/login"/> :<Inbox />} />

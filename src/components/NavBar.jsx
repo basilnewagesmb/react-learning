@@ -8,7 +8,6 @@ import {
 } from "@ant-design/icons";
 import Avatar from "antd/lib/avatar/avatar";
 import { useSelector,useDispatch } from "react-redux";
-import { logout } from "features/auth/authSlice";
 
 function NavBar() {
   const { user, name } = useSelector((state) => state.auth);
@@ -36,7 +35,7 @@ function NavBar() {
       {user && (
         <Menu.Item key="avatar">
           <Popover
-            content={<a onClick={()=>dispatch(logout())}>logout</a>}
+            content={<a onClick={()=>console.log("d")}>logout</a>}
             trigger="click"
             visible={visibility}
             onVisibleChange={()=>setVisibility(true)}
